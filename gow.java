@@ -33,14 +33,14 @@ public class gow {
 
 // Integer -> int
 // take card and get card value by modulo 13
-
+// tested
   static int card_val(Integer card){
   return (card.intValue() % 13);
 }
 
 //Integer -> String
 //take card and get card value by int division by 13
-
+// tested
   static String card_Suit(Integer card){
    String suit;
    switch(card.intValue() / 13){
@@ -61,7 +61,7 @@ public class gow {
    }  
   return suit ;
 }
-// int -> String
+// Integer -> String
 // this is going to show the cards suit and val
   static String show_card(Integer card){
     String l = "";
@@ -77,7 +77,7 @@ public class gow {
       l = "K";
       break;
     default:
-      l = ""+val;
+      l = ""+(val+1);
       break;  
     }
     return card_Suit(card) + l+" ";
