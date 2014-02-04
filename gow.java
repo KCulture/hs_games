@@ -45,10 +45,10 @@ public class gow {
    String suit;
    switch(card.intValue() / 13){
    case 0:
-     suit = "\u2660";
+     suit = "\u2664";
      break;
    case 1:  
-     suit = "\u2661" ;
+     suit = "\u25C7" ;
      break;
    case 2:  
      suit = "\u2666";
@@ -67,30 +67,34 @@ public class gow {
     String l = "";
     int val = card_val(card);
     switch(val){
-    case 10:
+    case 9:
       l = "J";
       break;
-    case 11:
+    case 10:
       l = "Q";
       break;
-    case 12:
+    case 11:
       l = "K";
       break;
+    case 12:
+      l = "A";
+      break;
     default:
-      l = ""+(val+1);
+      l = ""+(val+2);
       break;  
     }
     return card_Suit(card) + l+" ";
   }  
 //LL<Integer> -> String
-//recursive
+//take cards and turns them into string
+//tested - likely to be removed because it is more for testing
   static String show_cards(List<Integer> cards){
     if(cards.isEmpty()) return "";
     return show_card(cards.get(0)) + show_cards(cards.subList(1,cards.size()));
   }
 // AL<Integer> , AL<Integer> -> Boolean
 // checks if player needs to redistribute card from discard to hand
-
+//both tested
   static boolean reHand(LinkedList<Integer> hand, LinkedList<Integer> dis){
   return hand.size() == 0 && dis.size() > 0; 
 }
@@ -100,11 +104,13 @@ public class gow {
 }
 // void -> Boolean
 // checks if game is over
+// can't test at the moment
   static boolean gameOver(){
   return ((p1h.size() | p1dis.size()) == 0) || ((p2h.size() | p2dis.size()) == 0); 
 }
 // int int -> int
 // finds out how many cards each player should add to soils during battle
+//tested
   static int findAsize(int cards1, int cards2){
   int bounty = -1 ;
   if(cards1  > 3 && cards2 > 3) bounty= 3;
@@ -117,12 +123,15 @@ public class gow {
 } 
 // void -> String
 // Makes an announcement of a winner
+//can't test at the moment
   static String winner(){
   if(((p1h.size() | p1dis.size()) == 0)) return p2_name+" wins";
   else return p1_name+" wins";
 }
 
 // AL<Integer> "Player hand" ->  Integer
+// assume hand is not empty get the first card in hand
+//tested  
   static Integer play_card(LinkedList<Integer> hand){
   Integer card = hand.remove(0);
   spoils.add(card);
@@ -131,9 +140,7 @@ public class gow {
 // int -> void
 // procedure that transfers cards both players hand in spoils
   static void battle_bounty(int count){
-    System.out.print(show_cards(p1h.subList(0, count)));
     transfer(p1h,spoils,count);
-    System.out.print(show_cards(p2h.subList(0, count)));
     transfer(p2h,spoils,count);
   
 }
@@ -183,12 +190,12 @@ for(int i = 0; i< limit; i++) to.add(from.remove());
     case "p1" :
       int cards = spoils.size();
       transfer(spoils,p1dis,spoils.size());
-      System.out.println(p1_name+" wins skirmish and adds "+cards+ "cards to Discard pile");
+      System.out.println(p1_name+" wins skirmish and adds "+cards+ " cards to Discard pile");
       break;
     case "p2" :
       int other_cards = spoils.size();
       transfer(spoils,p2dis,spoils.size());
-      System.out.println(p2_name+" wins skirmish and adds "+other_cards+ "cards to Discard pile");
+      System.out.println(p2_name+" wins skirmish and adds "+other_cards+ " cards to Discard pile");
      default :
        
     }   
