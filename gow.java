@@ -185,15 +185,16 @@ for(int i = 0; i< limit; i++) to.add(from.remove());
     switch(getVictor(p1lc, p2lc)){
     case "Battle":
       battle_ready();
-      System.out.println(" Time to battle");
       break;
     case "p1" :
+      int cards = spoils.size();
       transfer(spoils,p1dis,spoils.size());
-      System.out.println(p1_name+" wins skirmish");
+      System.out.println(p1_name+" wins skirmish and adds "+cards+ "cards to Discard pile");
       break;
     case "p2" :
+      int other_cards = spoils.size();
       transfer(spoils,p2dis,spoils.size());
-      System.out.println(p2_name+" wins skirmish");
+      System.out.println(p2_name+" wins skirmish and adds "+other_cards+ "cards to Discard pile");
      default :
        
     }   
