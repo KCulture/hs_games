@@ -175,13 +175,7 @@ for(int i = 0; i< limit; i++) to.add(from.remove());
     System.out.println(show_card(p1lc));
     p2lc=play_card(p2h);
     System.out.println(show_card(p2lc));
-    /*
-    System.out.println("p1h "+p1h);
-    System.out.println("p2h "+p2h);
-    System.out.println("p1dis "+p1dis);
-    System.out.println("p2dis "+p2dis);
-    System.out.println("spoils "+spoils);
-    */
+    
     switch(getVictor(p1lc, p2lc)){
     case "Battle":
       battle_ready();
